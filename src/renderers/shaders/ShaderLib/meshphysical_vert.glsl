@@ -20,6 +20,9 @@ varying vec3 vViewPosition;
 #include <specularmap_pars_fragment>
 #include <logdepthbuf_pars_vertex>
 #include <clipping_planes_pars_vertex>
+#include <instance_scale_pars_vertex>
+#include <instance_orientation_pars_vertex>
+#include <instance_offset_pars_vertex>
 
 void main() {
 
@@ -43,6 +46,9 @@ void main() {
 	#include <displacementmap_vertex>
 	#include <morphtarget_vertex>
 	#include <skinning_vertex>
+	#include <instance_scale_vertex>
+	#include <instance_orientation_vertex>
+	#include <instance_offset_vertex>
 	#include <project_vertex>
 	#include <logdepthbuf_vertex>
 	#include <clipping_planes_vertex>

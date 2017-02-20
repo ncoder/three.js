@@ -83,3 +83,7 @@ mat3 transpose( const in mat3 v ) {
 	return tmp;
 
 }
+
+vec3 quaternionTransform( vec4 q, vec3 v ) {
+    return v + 2.0*cross(cross(v, q.xyz ) + q.w*v, q.xyz);
+}

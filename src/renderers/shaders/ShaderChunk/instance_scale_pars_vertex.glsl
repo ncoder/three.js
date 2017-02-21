@@ -1,5 +1,5 @@
-﻿#ifdef USE_INSTANCE_SCALE
+#ifdef USE_INSTANCE_SCALE
 
-    attribute vec3 instance_scale;
+    attribute vec3 instanceScale;
 
 #endif

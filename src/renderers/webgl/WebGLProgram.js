@@ -341,6 +341,10 @@ function WebGLProgram( renderer, code, material, parameters ) {
 			parameters.alphaMap ? '#define USE_ALPHAMAP' : '',
 			parameters.vertexColors ? '#define USE_COLOR' : '',
 
+			parameters.instanceOffsets ? '#define USE_INSTANCE_OFFSET' : '',
+			parameters.instanceOrientations ? '#define USE_INSTANCE_ORIENTATION' : '',
+			parameters.instanceScales ? '#define USE_INSTANCE_SCALE' : '',
+
 			parameters.flatShading ? '#define FLAT_SHADED' : '',
 
 			parameters.skinning ? '#define USE_SKINNING' : '',
@@ -447,6 +451,10 @@ function WebGLProgram( renderer, code, material, parameters ) {
 			parameters.metalnessMap ? '#define USE_METALNESSMAP' : '',
 			parameters.alphaMap ? '#define USE_ALPHAMAP' : '',
 			parameters.vertexColors ? '#define USE_COLOR' : '',
+
+			parameters.instanceOffsets ? '#define USE_INSTANCE_OFFSET' : '',
+			parameters.instanceOrientations ? '#define USE_INSTANCE_ORIENTATION' : '',
+			parameters.instanceScales ? '#define USE_INSTANCE_SCALE' : '',
 
 			parameters.gradientMap ? '#define USE_GRADIENTMAP' : '',
 

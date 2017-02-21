@@ -1,5 +1,5 @@
-﻿#ifdef USE_INSTANCE_ORIENTATION
+#ifdef USE_INSTANCE_ORIENTATION
 
-	transformed = quaternionTransform(instance_orientation, transformed);
+	transformed = quaternionTransform(instanceOrientation, transformed);
 
 #endif

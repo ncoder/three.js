@@ -1,5 +1,5 @@
-﻿#ifdef USE_INSTANCE_SCALE
+#ifdef USE_INSTANCE_SCALE
 
-	transformed *= instance_scale;
+	transformed *= instanceScale;
 
 #endif

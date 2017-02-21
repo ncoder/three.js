@@ -25,6 +25,9 @@ function Material() {
 	this.side = FrontSide;
 	this.shading = SmoothShading; // THREE.FlatShading, THREE.SmoothShading
 	this.vertexColors = NoColors; // THREE.NoColors, THREE.VertexColors, THREE.FaceColors
+	this.instanceOffsets = false;
+	this.instanceOrientations = false;
+	this.instanceScales = false;
 
 	this.opacity = 1;
 	this.transparent = false;

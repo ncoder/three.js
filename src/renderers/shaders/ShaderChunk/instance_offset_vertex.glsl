@@ -1,5 +1,5 @@
-﻿#ifdef USE_INSTANCE_OFFSET
+#ifdef USE_INSTANCE_OFFSET
 
-	transformed += instance_offset;
+	transformed += instanceOffset;
 
 #endif

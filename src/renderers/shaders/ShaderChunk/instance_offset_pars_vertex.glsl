@@ -1,5 +1,5 @@
-﻿#ifdef USE_INSTANCE_OFFSET
+#ifdef USE_INSTANCE_OFFSET
 
-    attribute vec3 instance_offset;
+    attribute vec3 instanceOffset;
 
 #endif

@@ -185,6 +185,10 @@ function WebGLPrograms( renderer, capabilities ) {
 
 			vertexColors: material.vertexColors,
 
+			instanceOffsets: material.instanceOffsets,
+			instanceOrientations: material.instanceOrientations,
+			instanceScales: material.instanceScales,
+
 			fog: !! fog,
 			useFog: material.fog,
 			fogExp: ( fog && fog.isFogExp2 ),

@@ -1,5 +1,5 @@
-﻿#ifdef USE_INSTANCE_ORIENTATION
+#ifdef USE_INSTANCE_ORIENTATION
 
-    attribute vec4 instance_orientation;
+    attribute vec4 instanceOrientation;
 
 #endif

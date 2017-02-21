@@ -34,6 +34,7 @@ void main() {
 	#include <morphnormal_vertex>
 	#include <skinbase_vertex>
 	#include <skinnormal_vertex>
+	#include <instance_orientation_normal_vertex>
 	#include <defaultnormal_vertex>
 
 #ifndef FLAT_SHADED // Normal computed with derivatives when FLAT_SHADED
@@ -45,10 +46,13 @@ void main() {
 	#include <begin_vertex>
 	#include <displacementmap_vertex>
 	#include <morphtarget_vertex>
-	#include <skinning_vertex>
+	
+	// should really be after skinning, but variable renaming makes this annoying
 	#include <instance_scale_vertex>
 	#include <instance_orientation_vertex>
 	#include <instance_offset_vertex>
+	
+	#include <skinning_vertex>
 	#include <project_vertex>
 	#include <logdepthbuf_vertex>
 	#include <clipping_planes_vertex>

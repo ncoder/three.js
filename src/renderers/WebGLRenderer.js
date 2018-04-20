@@ -1325,7 +1325,10 @@ function WebGLRenderer( parameters ) {
 					var geometry = objects.update( object );
 					var material = object.material;
 
-					if ( Array.isArray( material ) ) {
+					if ( geometry.dynamicLod ) {
+						geometry.dynamicLod(currentRenderList.push, object, _vector3.z);
+					}
+					else if ( Array.isArray( material ) ) {
 
 						var groups = geometry.groups;
 

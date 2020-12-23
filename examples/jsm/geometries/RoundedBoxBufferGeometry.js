@@ -39,19 +39,18 @@ function getUv( faceDirVector, normal, uvAxis, projectionAxis, radius, sideLengt
 
 class RoundedBoxBufferGeometry extends BoxBufferGeometry {
 
-	constructor( width = 1, height = 1, depth = 1, segments = 4, radius = 0.1 ) {
+	constructor( width = 1, height = 1, depth = 1, segments = 2, radius = 0.1 ) {
 
 		// ensure segments is odd so we have a plane connecting the rounded corners
-		segments = segments % 2 === 0 ? segments + 1 : segments;
+		segments = segments * 2 + 1;
+
+		// ensure radius isn't bigger than shortest side
+		radius = Math.min( width / 2, height / 2, depth / 2, radius );
 
 		super( 1, 1, 1, segments, segments, segments );
 
 		// if we just have one segment we're the same as a regular box
-		if ( segments === 1 ) {
-
-			return;
-
-		}
+		if ( segments === 1 ) return;
 
 		const geometry2 = this.toNonIndexed();
 
@@ -123,7 +122,7 @@ class RoundedBoxBufferGeometry extends BoxBufferGeometry {
 				case 3: // bottom
 
 					// generate UVs along X then Z
-					faceDirVector.set( 0, -1, 0 );
+					faceDirVector.set( 0, - 1, 0 );
 					uvs[ j + 0 ] = 1.0 - getUv( faceDirVector, normal, 'x', 'z', radius, width );
 					uvs[ j + 1 ] = 1.0 - getUv( faceDirVector, normal, 'z', 'x', radius, depth );
 					break;

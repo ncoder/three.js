@@ -1,19 +1,38 @@
 import { WebGLRenderTarget } from './WebGLRenderTarget.js';
+import { Texture } from './../textures/Texture';
 
 /**
  * @author Matt DesLauriers / @mattdesl
  * @author Takahiro https://github.com/takahirox
+ * @author Nicolas Coderre / @ncoder
  */
 
-function WebGLMultiRenderTarget( width, height, numAttachments, options ) {
+function WebGLMultiRenderTarget( width, height, optionsArray ) {
 
-	WebGLRenderTarget.call( this, width, height, options );
+    if ( !Array.isArray(optionsArray) ) {
+        optionsArray = [optionsArray]
+    }
 
-	this.textures = [];
+	WebGLRenderTarget.call( this, width, height, optionsArray[0] );
 
-	for ( let i = 0; i < numAttachments; i ++ ) {
+    this.optionsArray = optionsArray;
+    this.textures = [this.texture];
+    
+    // do the other textures
+	for ( let i = 1; i < optionsArray.length; i ++ ) {
 
-		this.textures[ i ] = this.texture.clone();
+        let options = optionsArray[i]
+        let texture = new Texture( undefined, options.mapping, options.wrapS, options.wrapT, options.magFilter, options.minFilter, options.format, options.type, options.anisotropy, options.encoding );
+
+        texture.image = {};
+        texture.image.width = width;
+        texture.image.height = height;
+        texture.name = options.name;
+    
+        texture.generateMipmaps = options.generateMipmaps !== undefined ? options.generateMipmaps : false;
+        texture.minFilter = options.minFilter !== undefined ? options.minFilter : LinearFilter;
+        
+		this.textures[ i ] = texture;
 
 	}
 
@@ -41,27 +60,19 @@ WebGLMultiRenderTarget.prototype = Object.assign( Object.create( WebGLRenderTarg
 
 	},
 
-	setNumAttachments( num ) {
+    setSize: function ( width, height ) {
 
-		if ( this.textures.length !== num ) {
+        WebGLRenderTarget.prototype.setSize.call( this, width, height );
 
-			this.dispose();
+		if ( this.width !== width || this.height !== height ) {
 
-			if ( num > this.textures.length ) {
+            // by default resize all textures. (desired?)
+            for ( let i = 1; i < this.optionsArray.length; i ++ ) {
+                this.texture.image.width = width;
+                this.texture.image.height = height;
 
-				for ( let i = this.textures.length; i < num; i ++ ) {
-
-					this.textures[ i ] = this.texture.clone();
-
-				}
-
-			} else {
-
-				this.textures.length = num;
-
-			}
-
-		}
+            }
+        }
 
 	}
 

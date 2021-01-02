@@ -4,19 +4,22 @@ import {
     WebGLRenderTargetOptions,
 } from './WebGLRenderTarget';
 
+export interface WebGLMultiRenderTargetOptions extends WebGLRenderTargetOptions {
+    name?: string // optional name for debugging
+}
+
 export class WebGLMultiRenderTarget extends WebGLRenderTarget {
 
+    // pass one option struct per texture.
     constructor(
         width: number,
         height: number,
-        numAttachements: number,
-        options?: WebGLRenderTargetOptions
+        optionsArray: WebGLMultiRenderTargetOptions[] 
     );
 
     readonly isWebGLMultiRenderTarget: true;
 
-    setNumAttachments(n: number): void;
-
+    // this.textures[0] is the same as this.texture
     textures: Texture[]
 
 }

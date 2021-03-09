@@ -681,8 +681,9 @@ function WebGLProgram( renderer, cacheKey, parameters, bindingStates ) {
 
 		prefixFragment = [
 			'#define varying in',
-			( parameters.glslVersion === GLSL3 ) ? '' : 'layout(location = 0) out highp vec4 pc_fragColor;',
-			( parameters.glslVersion === GLSL3 ) ? '' : '#define gl_FragColor pc_fragColor',
+			'#define LAYOUT_LOCATION(x) layout(location = x) out',
+			parameters.glslVersion === GLSL3 ? '' : 'LAYOUT_LOCATION(0) highp vec4 pc_fragColor;',
+			parameters.glslVersion === GLSL3 ? '' : '#define gl_FragColor pc_fragColor',
 			'#define gl_FragDepthEXT gl_FragDepth',
 			'#define texture2D texture',
 			'#define textureCube texture',
@@ -695,6 +696,9 @@ function WebGLProgram( renderer, cacheKey, parameters, bindingStates ) {
 			'#define textureCubeGradEXT textureGrad'
 		].join( '\n' ) + '\n' + prefixFragment;
 
+	}
+	else {
+		prefixFragment = '#define LAYOUT_LOCATION(x)\n' + prefixFragment;
 	}
 
 	const vertexGlsl = versionString + prefixVertex + vertexShader;
